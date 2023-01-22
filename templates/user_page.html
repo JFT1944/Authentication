@@ -1,0 +1,30 @@
+{% extends 'base.html'%}
+
+{% block content%}
+<h1>Hello {{C_U.first_name}}</h1>
+
+C_U
+<h3>Account Information:</h3>
+<ul>
+    <li>{{C_U.username}}</li>
+    <li>{{C_U.email}}</li>
+    <li>{{C_U.first_name}} {{C_U.last_name}}</li>
+</ul>
+
+<h3>Feedback:</h3>
+<ul>
+    {% for fb in U_F%}
+    <div style="width: 80%; background: rgba(0,0,0, .2); padding: 10px; border-radius: 13px; margin-bottom: 15px;">
+        <span style="font-size: 20px;"><b><a href="/feedback/{{fb.id}}/update">{{fb.title}}</a></b></span>
+        <p style="font-size:15px ;">{{fb.content}}</p>
+    </div>
+    {% endfor%}
+</ul>
+<a href="/users/{{C_U.username}}/feedback/add">Add Feedback</a>
+
+
+
+
+
+<a style=" bottom: 20px; left:20px; color: maroon; font-weight: bold; position: fixed;" href="/users/{{session['username']}}/delete">Delete Account</a>
+{% endblock %}

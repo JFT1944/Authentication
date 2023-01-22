@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+
+{% block content%}
+Title: {{fb.title}}
+Content: {{fb.content}}
+
+<form id="edit-feedback-post" method="POST">
+    {{ form.hidden_tag() }} <!--add type=hidden form fields -->
+  
+    {% for field in form
+           if field.widget.input_type != 'hidden' %}
+  
+      <p>
+        {{ field.label }}
+        {{ field }}
+  
+        {% for error in field.errors %}
+          {{ error }}
+        {% endfor %}
+      </p>
+  
+    {% endfor %}
+  
+
+    <span style="color:red"><a href="/feedback/{{fb.id}}/delete">Delete Post</a></span>
+    <button type="submit">Submit</button>
+  </form>
+{% endblock %}
